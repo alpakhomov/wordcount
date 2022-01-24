@@ -1,26 +1,17 @@
 package main
 
 import (
-	"flag"
 	"fmt"
+	"os"
 	"strings"
 )
 
 func main() {
-	text, _ := readInput()
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	os.Exit(1)
-	// }
-	words := strings.Fields(text)
+	if len(os.Args) != 2 {
+		fmt.Println("Usage: wordcount PHRASE")
+		os.Exit(1)
+	}
+	phrase := os.Args[1]
+	words := strings.Fields(phrase)
 	fmt.Println(len(words))
-}
-
-func readInput() (src string, err error) {
-	flag.Parse()
-	src = strings.Join(flag.Args(), "")
-	// if src == "" {
-	// 	return src, errors.New("empty string")
-	// }
-	return src, nil
 }
